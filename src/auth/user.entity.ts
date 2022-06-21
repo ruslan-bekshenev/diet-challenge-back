@@ -1,5 +1,6 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -10,12 +11,12 @@ export class User {
   @Column({ nullable: false })
   password: string;
 
-  @Column()
+  @Column({ nullable: true, default: '' })
   firstName: string;
 
-  @Column()
+  @Column({ nullable: true, default: '' })
   lastName: string;
 
-  @Column()
+  @Column({ nullable: true, default: 0 })
   weight: number;
 }
