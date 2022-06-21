@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { FoodModule } from './food/food.module';
+import { DietModule } from './diet/diet.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -16,6 +18,8 @@ import { AuthModule } from './auth/auth.module';
       autoLoadEntities: true,
     }),
     AuthModule,
+    FoodModule,
+    DietModule,
   ],
   controllers: [],
   providers: [],
