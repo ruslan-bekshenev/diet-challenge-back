@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { RefreshToken } from './refreshtoken.entity';
 
 @Entity()
 export class User {
@@ -19,4 +20,10 @@ export class User {
 
   @Column({ nullable: true, default: 0 })
   weight: number;
+
+  @OneToMany(
+    () => RefreshToken,
+    (refreshToken: RefreshToken) => refreshToken.user,
+  )
+  refreshTokens: RefreshToken[];
 }
