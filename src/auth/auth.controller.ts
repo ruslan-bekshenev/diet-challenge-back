@@ -2,7 +2,6 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth.credentials.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
-import { RefreshToken } from './refreshtoken.entity';
 
 @Controller('auth')
 export class AuthController {

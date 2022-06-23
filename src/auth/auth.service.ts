@@ -13,7 +13,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { RefreshToken } from './refreshtoken.entity';
 import { JwtPayload } from './jwt-payload.interface';
-import dayjs from 'dayjs';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
 
 @Injectable()
