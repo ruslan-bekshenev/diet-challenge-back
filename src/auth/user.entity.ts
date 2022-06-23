@@ -25,6 +25,6 @@ export class User {
   )
   refreshTokens: RefreshToken[];
 
-  @OneToMany(() => Meal, (meal) => meal.id)
+  @OneToMany(() => Meal, (meal) => meal.user)
   meal: Meal[];
 }

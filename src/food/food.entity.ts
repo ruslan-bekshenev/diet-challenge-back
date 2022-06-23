@@ -12,6 +12,6 @@ export class Food {
   @Column({ nullable: false })
   calories: number;
 
-  @OneToMany(() => Meal, (meal) => meal.id)
+  @OneToMany(() => Meal, (meal) => meal.food)
   meal: Meal[];
 }

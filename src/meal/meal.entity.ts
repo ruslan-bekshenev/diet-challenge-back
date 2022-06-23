@@ -13,9 +13,9 @@ export class Meal {
   @Column({ nullable: false, default: 100 })
   weight: number;
 
-  @ManyToOne(() => Food, (food) => food.id)
-  foodId: Food;
+  @ManyToOne(() => Food, (food) => food.meal)
+  food: Food;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.meal)
   user: User;
 }
