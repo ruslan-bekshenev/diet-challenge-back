@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Meal } from 'src/meal/meal.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Food {
@@ -10,4 +11,7 @@ export class Food {
 
   @Column({ nullable: false })
   calories: number;
+
+  @OneToMany(() => Meal, (meal) => meal.id)
+  meal: Meal[];
 }

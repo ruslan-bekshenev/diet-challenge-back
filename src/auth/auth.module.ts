@@ -7,6 +7,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 import { RefreshToken } from './refreshtoken.entity';
+import { Meal } from 'src/meal/meal.entity';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { RefreshToken } from './refreshtoken.entity';
         expiresIn: 3600,
       },
     }),
-    TypeOrmModule.forFeature([User, RefreshToken]),
+    TypeOrmModule.forFeature([User, RefreshToken, Meal]),
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],

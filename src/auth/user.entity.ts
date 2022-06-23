@@ -1,3 +1,4 @@
+import { Meal } from 'src/meal/meal.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { RefreshToken } from './refreshtoken.entity';
 
@@ -18,12 +19,12 @@ export class User {
   @Column({ nullable: true, default: '' })
   lastName: string;
 
-  @Column({ nullable: true, default: 0 })
-  weight: number;
-
   @OneToMany(
     () => RefreshToken,
     (refreshToken: RefreshToken) => refreshToken.user,
   )
   refreshTokens: RefreshToken[];
+
+  @OneToMany(() => Meal, (meal) => meal.id)
+  meal: Meal[];
 }

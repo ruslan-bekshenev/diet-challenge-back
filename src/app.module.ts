@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { FoodModule } from './food/food.module';
-import { DietModule } from './diet/diet.module';
+import { MealModule } from './meal/meal.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -19,7 +19,7 @@ import { DietModule } from './diet/diet.module';
     }),
     AuthModule,
     FoodModule,
-    DietModule,
+    MealModule,
   ],
   controllers: [],
   providers: [],

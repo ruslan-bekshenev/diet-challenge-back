@@ -17,6 +17,6 @@ export class FoodController {
 
   @Get()
   getList() {
-    return this.foodService.getList()
+    return this.foodService.getList();
   }
 }
