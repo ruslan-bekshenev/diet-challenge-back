@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import { User } from 'src/auth/user.entity';
 import { Food } from 'src/food/food.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
@@ -7,7 +8,8 @@ export class Meal {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'time with time zone' })
+  @Type(() => Date)
+  @Column({ type: 'timestamptz' })
   date: Date;
 
   @Column({ nullable: false, default: 100 })
