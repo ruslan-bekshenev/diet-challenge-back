@@ -10,8 +10,6 @@ export class FoodController {
 
   @Post()
   create(@Body() createFoodDto: CreateFoodDto) {
-    console.log({ createFoodDto });
-
     return this.foodService.create(createFoodDto);
   }
 

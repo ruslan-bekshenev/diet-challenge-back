@@ -1,9 +1,16 @@
+import { Type } from 'class-transformer';
+import { User } from 'src/auth/user.entity';
 import { Meal } from 'src/meal/meal.entity';
-import { Column, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity()
 export class HealthyDay {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Type(() => Date)
+  @Column({ type: 'timestamptz' })
+  date: Date;
 
   @Column()
   gym: boolean;
@@ -11,6 +18,9 @@ export class HealthyDay {
   @Column()
   smoking: boolean;
 
-  @ManyToOne(() => Meal, (meal) => meal.day)
+  @ManyToOne(() => Meal, (meal) => meal.healthyDay)
   meal: Meal;
+
+  @ManyToOne(() => User, (user) => user.healthyDay)
+  user: User;
 }

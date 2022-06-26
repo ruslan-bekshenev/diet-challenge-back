@@ -1,3 +1,4 @@
+import { HealthyDay } from 'src/healthy-day/healthy-day.entity';
 import { Meal } from 'src/meal/meal.entity';
 import {
   Column,
@@ -32,8 +33,8 @@ export class User {
   )
   refreshTokens: RefreshToken[];
 
-  @OneToMany(() => Meal, (meal) => meal.user)
-  meal: Meal[];
+  @OneToMany(() => HealthyDay, (healthyDay) => healthyDay.user)
+  healthyDay: Meal[];
 
   @OneToOne(() => Info, (info) => info.user)
   info: Info;

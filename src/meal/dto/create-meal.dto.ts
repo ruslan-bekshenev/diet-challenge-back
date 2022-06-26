@@ -9,7 +9,4 @@ export class CreateMealDto {
 
   @IsString()
   food: string;
-
-  @IsString()
-  user: string;
 }

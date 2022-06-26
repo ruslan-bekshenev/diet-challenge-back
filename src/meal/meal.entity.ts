@@ -25,9 +25,6 @@ export class Meal {
   @ManyToOne(() => Food, (food) => food.meal)
   food: Food;
 
-  @ManyToOne(() => User, (user) => user.meal)
-  user: User;
-
-  @OneToMany(() => HealthyDay, (day) => day.meal)
-  day: HealthyDay[];
+  @OneToMany(() => HealthyDay, (healthyDay) => healthyDay.meal)
+  healthyDay: HealthyDay[];
 }

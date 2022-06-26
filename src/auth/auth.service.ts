@@ -38,6 +38,10 @@ export class AuthService {
 
     try {
       await this.usersRepository.save(user);
+      const { accessToken, refreshToken } = await this.signIn(
+        authCredentialsDto,
+      );
+      return { accessToken, refreshToken };
     } catch (error) {
       if (error.code === '23505') {
         throw new ConflictException('Username is already exists');

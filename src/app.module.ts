@@ -24,7 +24,7 @@ import { HealthyDayModule } from './healthy-day/healthy-day.module';
     MealModule,
     HealthyDayModule,
   ],
-  controllers: [HealthyDayController],
+  controllers: [],
   providers: [],
 })
 export class AppModule {}
