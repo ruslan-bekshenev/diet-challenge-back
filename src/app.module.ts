@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { FoodModule } from './food/food.module';
 import { MealModule } from './meal/meal.module';
+import { HealthyDayController } from './healthy-day/healthy-day.controller';
+import { HealthyDayModule } from './healthy-day/healthy-day.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -20,8 +22,9 @@ import { MealModule } from './meal/meal.module';
     AuthModule,
     FoodModule,
     MealModule,
+    HealthyDayModule,
   ],
-  controllers: [],
+  controllers: [HealthyDayController],
   providers: [],
 })
 export class AppModule {}

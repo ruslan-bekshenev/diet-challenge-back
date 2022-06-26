@@ -47,26 +47,7 @@ export class MealService {
         date: 'ASC',
       },
     });
-    const formattedMeals = meals
-      .sort((a, b) => {
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
-        if (dateA > dateB) {
-          return 1;
-        } else if (dateA < dateB) {
-          return -1;
-        }
 
-        return 0;
-      })
-      .map((meal) => {
-        return {
-          ...meal,
-          date: format(new Date(meal.date), 'yyyy-MM-dd'),
-          time: format(new Date(meal.date), 'HH:mm:ss.SSSxxx'),
-        };
-      });
-    const grouped = groupBy(formattedMeals, 'date');
-    return grouped;
+    return meals;
   }
 }

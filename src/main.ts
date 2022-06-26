@@ -19,7 +19,6 @@ async function bootstrap() {
     origin: ['http://localhost:3000', 'http://localhost:3000'],
   };
   app.enableCors(corsOptions);
-  app.enableCors();
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new TransformInterceptor());
   await app.listen(process.env.PORT || 3000);

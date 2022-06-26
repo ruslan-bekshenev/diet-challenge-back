@@ -1,5 +1,12 @@
 import { Meal } from 'src/meal/meal.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Info } from './info.entity';
 import { RefreshToken } from './refreshtoken.entity';
 
 @Entity()
@@ -27,4 +34,7 @@ export class User {
 
   @OneToMany(() => Meal, (meal) => meal.user)
   meal: Meal[];
+
+  @OneToOne(() => Info, (info) => info.user)
+  info: Info;
 }

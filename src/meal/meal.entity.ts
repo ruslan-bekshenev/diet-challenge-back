@@ -1,7 +1,14 @@
 import { Type } from 'class-transformer';
 import { User } from 'src/auth/user.entity';
 import { Food } from 'src/food/food.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { HealthyDay } from 'src/healthy-day/healthy-day.entity';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Meal {
@@ -20,4 +27,7 @@ export class Meal {
 
   @ManyToOne(() => User, (user) => user.meal)
   user: User;
+
+  @OneToMany(() => HealthyDay, (day) => day.meal)
+  day: HealthyDay[];
 }
