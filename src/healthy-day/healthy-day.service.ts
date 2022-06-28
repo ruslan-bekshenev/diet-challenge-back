@@ -67,7 +67,11 @@ export class HealthyDayService {
 
   async getByDate(date: Date, user: User) {
     const currentDate = await this.healthyDayRepository.find({
-      relations: ['meal'],
+      relations: {
+        meal: {
+          food: true,
+        },
+      },
       where: { date, user },
     });
 
