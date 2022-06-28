@@ -36,6 +36,6 @@ export class User {
   @OneToMany(() => HealthyDay, (healthyDay) => healthyDay.user)
   healthyDay: Meal[];
 
-  @OneToOne(() => Info, (info) => info.user)
+  @OneToOne(() => Info, (info) => info.user, { cascade: true })
   info: Info;
 }

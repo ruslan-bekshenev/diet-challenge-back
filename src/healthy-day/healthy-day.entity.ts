@@ -9,7 +9,7 @@ export class HealthyDay {
   id: string;
 
   @Type(() => Date)
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'date' })
   date: Date;
 
   @Column()
@@ -18,7 +18,7 @@ export class HealthyDay {
   @Column()
   smoking: boolean;
 
-  @ManyToOne(() => Meal, (meal) => meal.healthyDay)
+  @ManyToOne(() => Meal, (meal) => meal.healthyDay, { cascade: true })
   meal: Meal;
 
   @ManyToOne(() => User, (user) => user.healthyDay)

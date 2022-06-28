@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/auth/get-user.decorator';
 import { User } from 'src/auth/user.entity';
@@ -21,5 +21,10 @@ export class HealthyDayController {
   @Get()
   getList(@GetUser() user: User) {
     return this.healthyDayService.getList(user);
+  }
+
+  @Get('/:date')
+  getByDate(@Param('date') date: Date, @GetUser() user: User) {
+    return this.healthyDayService.getByDate(date, user);
   }
 }

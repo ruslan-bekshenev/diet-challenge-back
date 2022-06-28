@@ -22,7 +22,10 @@ export class Meal {
   @Column({ nullable: false, default: 100 })
   weight: number;
 
-  @ManyToOne(() => Food, (food) => food.meal)
+  @Column({ nullable: false, default: 0 })
+  calories: number;
+
+  @ManyToOne(() => Food, (food) => food.meal, { cascade: true })
   food: Food;
 
   @OneToMany(() => HealthyDay, (healthyDay) => healthyDay.meal)

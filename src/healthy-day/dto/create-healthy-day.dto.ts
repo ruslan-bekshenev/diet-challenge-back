@@ -1,4 +1,4 @@
-import { IsBoolean, IsDateString } from 'class-validator';
+import { IsBoolean, IsDateString, IsNumber } from 'class-validator';
 import { Meal } from 'src/meal/meal.entity';
 
 export class CreateHealthyDayDto {

@@ -5,7 +5,7 @@ import { Food } from 'src/food/food.entity';
 import { Meal } from 'src/meal/meal.entity';
 import { Repository } from 'typeorm';
 import { CreateHealthyDayDto } from './dto/create-healthy-day.dto';
-import { formatHealthyDay } from './format.healthy-day';
+import { formatHealthyDay, transformHealthyDay } from './format.healthy-day';
 import { HealthyDay } from './healthy-day.entity';
 
 @Injectable()
@@ -21,15 +21,23 @@ export class HealthyDayService {
 
   async create(createHealthyDayDto: CreateHealthyDayDto, user: User) {
     const { meals, gym, smoking, date: dateHealthy } = createHealthyDayDto;
-    const result = [];
+    const mealsArray = [];
+    const days = [];
+    const DEFAULT_WEIGHT = 100;
     for await (const meal of meals) {
       const { date, food, weight } = meal;
+      const calories = (+weight / DEFAULT_WEIGHT) * +food.calories;
+
       const mealObject = this.mealRepository.create({
         date,
         weight,
         food,
+        calories,
       });
+
       await this.mealRepository.save(mealObject);
+
+      mealsArray.push(mealObject);
 
       const newHealthyDay = this.healthyDayRepository.create({
         gym,
@@ -41,23 +49,28 @@ export class HealthyDayService {
 
       await this.healthyDayRepository.save(newHealthyDay);
 
-      result.push(newHealthyDay);
+      days.push(newHealthyDay);
     }
 
-    return formatHealthyDay(result, 'date');
+    return days;
   }
 
   async getList(user: User) {
-    const list = await this.healthyDayRepository.find({
+    const list = await this.healthyDayRepository
+      .createQueryBuilder('healthy_day')
+      .select('healthy_day.date')
+      .distinctOn(['healthy_day.date'])
+      .getMany();
+
+    return list;
+  }
+
+  async getByDate(date: Date, user: User) {
+    const currentDate = await this.healthyDayRepository.find({
       relations: ['meal'],
-      where: {
-        user,
-      },
-      order: {
-        date: 'ASC',
-      },
+      where: { date, user },
     });
 
-    return formatHealthyDay(list, 'date');
+    return transformHealthyDay(currentDate);
   }
 }
